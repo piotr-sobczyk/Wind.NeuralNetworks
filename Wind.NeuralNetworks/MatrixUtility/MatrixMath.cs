@@ -20,9 +20,9 @@ namespace neural_computing_machine
                     "\nSecondMatrix cols = " + secondMatrix.Cols);
             }
         }
-        private static void SameRowLength(Matrix firstMatrix, Matrix secondMatrix)
+        private static void AreMultiplicative(Matrix firstMatrix, Matrix secondMatrix)
         {
-            if (firstMatrix.Rows != secondMatrix.Rows)
+            if (firstMatrix.Cols != secondMatrix.Rows)
             {
                 throw new ArgumentException("Given matrixes doesn't have the same amount of rows." + 
                     " Can not multiply matrices.");
@@ -65,7 +65,7 @@ namespace neural_computing_machine
 
         public static Matrix Multiply(Matrix multiplier, Matrix multiplicand)
         {
-            //SameRowLength(multiplier, multiplicand);
+            AreMultiplicative(multiplier, multiplicand);
 
             double[,] result = new double[multiplier.Rows, multiplicand.Cols];
 

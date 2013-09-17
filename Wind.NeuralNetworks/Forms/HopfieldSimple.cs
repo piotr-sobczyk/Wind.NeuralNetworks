@@ -18,46 +18,50 @@ namespace neural_computing_machine.Forms
         {
             InitializeComponent();
             this.network = new HopfieldNetwork(4);
-            refreshMatrixPreview();
+            RefreshMatrixPreview();
         }
 
         private void btnRecognize_Click(object sender, EventArgs e)
         {
             bool[] inputPattern = new bool[4];
-
-            inputPattern[0] = Convert.ToBoolean(this.nudInput1.Value);
-            inputPattern[1] = Convert.ToBoolean(this.nudInput2.Value);
-            inputPattern[2] = Convert.ToBoolean(this.nudInput3.Value);
-            inputPattern[3] = Convert.ToBoolean(this.nudInput4.Value);
+            ReadPattern(inputPattern);
 
             bool[] resultPattern = network.Present(inputPattern);
-
-            tbResult1.Text = Convert.ToString(resultPattern[0]);
-            tbResult2.Text = Convert.ToString(resultPattern[1]);
-            tbResult3.Text = Convert.ToString(resultPattern[2]);
-            tbResult4.Text = Convert.ToString(resultPattern[3]);
+            ShowPattern(resultPattern);
         }
 
         private void btnTrain_Click(object sender, EventArgs e)
         {
             bool[] pattern = new bool[4];
-
-            pattern[0] = Convert.ToBoolean(this.nudInput1.Value);
-            pattern[1] = Convert.ToBoolean(this.nudInput2.Value);
-            pattern[2] = Convert.ToBoolean(this.nudInput3.Value);
-            pattern[3] = Convert.ToBoolean(this.nudInput4.Value);
+            ReadPattern(pattern);
 
             network.Train(pattern);
-            refreshMatrixPreview();
+            RefreshMatrixPreview();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
             network = new HopfieldNetwork(4);
-            refreshMatrixPreview();
+            RefreshMatrixPreview();
         }
 
-        private void refreshMatrixPreview()
+        private void ReadPattern(bool[] pattern)
+        {
+            pattern[0] = Convert.ToBoolean(this.nudInput1.Value);
+            pattern[1] = Convert.ToBoolean(this.nudInput2.Value);
+            pattern[2] = Convert.ToBoolean(this.nudInput3.Value);
+            pattern[3] = Convert.ToBoolean(this.nudInput4.Value);
+        }
+
+        private void ShowPattern(bool[] pattern)
+        {
+            tbResult1.Text = Convert.ToString(pattern[0]);
+            tbResult2.Text = Convert.ToString(pattern[1]);
+            tbResult3.Text = Convert.ToString(pattern[2]);
+            tbResult4.Text = Convert.ToString(pattern[3]);
+        }
+
+        private void RefreshMatrixPreview()
         {
             dgvMatrixPreview.Rows.Clear();
 
