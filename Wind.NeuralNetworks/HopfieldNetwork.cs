@@ -43,14 +43,7 @@ namespace neural_computing_machine
                 weightColumn = MatrixMath.Transpose(weightColumn);
 
                 double dotProduct = MatrixMath.DotProduct(inputRow, weightColumn);
-                if (dotProduct > 0)
-                {
-                    output[i] = true;
-                }
-                else
-                {
-                    output[i] = false;
-                }
+                output[i] = ConvertOutputToBool(dotProduct);
             }
 
             return output;
@@ -73,5 +66,11 @@ namespace neural_computing_machine
 
             this.weightMatrix = MatrixMath.Add(weightMatrix, contributionMatrix);
         }
+
+        private bool ConvertOutputToBool(double output)
+        {
+            return output > 0 ? true : false;
+        }
+
     }
 }
