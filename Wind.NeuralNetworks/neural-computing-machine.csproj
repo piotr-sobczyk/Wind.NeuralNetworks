@@ -59,7 +59,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivationFunctions\HyperbolicTangent.cs" />
+    <Compile Include="ActivationFunctions\Sigmoid.cs" />
     <Compile Include="ErrorUtility\ErrorCalculation.cs" />
+    <Compile Include="Feedforward\Layer.cs" />
+    <Compile Include="Feedforward\Network.cs" />
     <Compile Include="Forms\HopfieldSimple.cs">
       <SubType>Form</SubType>
     </Compile>
